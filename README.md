@@ -12,7 +12,7 @@
 ## 📘 Overview
 
 This project involves implementing, analyzing, and comparing multiple **sorting and searching algorithms**.  
-You will gather all relevant algorithms into a single program with a **menu-driven interface**, allowing users to select algorithms, generate random input, and analyze performance under different conditions.
+Will gather all relevant algorithms into a single program with a **menu-driven interface**, allowing users to select algorithms, generate random input, and analyze performance under different conditions.
 
 In addition to functional correctness, the project emphasizes **code readability**, **analysis**, and **documentation**.
 
@@ -36,7 +36,7 @@ In addition to functional correctness, the project emphasizes **code readability
 
 ## 🧭 Program Requirements
 
-Your program should:
+The program should:
 
 1. Display a **menu** for selecting between sorting and searching operations.  
 2. Allow the **user to specify input size** and generate random arrays accordingly.  
@@ -76,7 +76,7 @@ The report must include:
 
 ## 💾 File & Folder Structure
 
-Your final submission should include:
+The final submission should include:
 YourLastNames-CS203-F25-Project/
 │
 ├── README.txt # How to compile and run the code
@@ -86,7 +86,7 @@ YourLastNames-CS203-F25-Project/
 ├── output/ # Output data files (results)
 └── graphs/ # Charts and visuals for the report
 
-Compress your folder into a `.zip` or `.rar` file:
+Compress the folder into a `.zip` or `.rar` file:
 
 Submit the archive via **Blackboard**.
 
@@ -94,7 +94,7 @@ Submit the archive via **Blackboard**.
 
 ## 🧠 Extra Credit Opportunities
 
-You may earn extra credit for adding advanced or creative features, such as:
+For Extra Credit, I will Include:
 
 - Input Customization:
     - Array Balance Scale
@@ -107,8 +107,7 @@ You may earn extra credit for adding advanced or creative features, such as:
     - Add Report w/ Graphs to GUI
 - Data Handling
     - Store metrics in an excel sheet that continues to be updated ( Generating and saving performance graphs dynamically  )
-- Implementing additional algorithms (e.g., Shell Sort, Radix Sort, or Interpolation Search)
-- Adaptive Sort Option: detect if data is nearly sorted and autoatically pick the best sort method. 
+- Adaptive Sort Option: detect if data is nearly sorted and automatically pick the best sort method based on user question (do you care about space or time?). 
 
 
 
