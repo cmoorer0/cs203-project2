@@ -99,6 +99,7 @@ For Extra Credit, I will Include:
 - Input Customization:
     - Array Balance Scale
     - For Search: Sorted or Unsorted
+    - Allow Duplicates?
 - Algorithm Customization:
     - For QuickSort: Choose Partitioning
     - Optimize Bubblesort Option
