@@ -5,7 +5,7 @@ public class SortSearchAnalysis
    {
    }
    
-   public static void SelectionSort( int[] A ) {
+   public static int[] SelectionSort( int[] A ) {
       //Temp variables
       int min; //Index of current partition minimum.
       int temp; //Buffer variable to perform swap
@@ -26,10 +26,10 @@ public class SortSearchAnalysis
          A[min] = temp;
          selectionSwapCounter++;
       }
-   
+      return new int [] {selectionComparisonCounter, selectionSwapCounter};
    }
    
-   public static void BubbleSort( int[] A ) {
+   public static int[] BubbleSort( int[] A ) {
       int bubbleComparisonCounter = 0; //counter for number of comparisons
       int bubbleSwapCounter = 0; //counter for number of swaps
       for (int i = 0; i < A.length - 1; i++ ) {
@@ -46,9 +46,10 @@ public class SortSearchAnalysis
             }
          }
       }
+      return new int[] {bubbleComparisonCounter, bubbleSwapCounter};
    }
    
-   public static void BubbleSortOptimized (int [] A) {
+   public static int[] BubbleSortOptimized (int [] A) {
       int bubbleOptimizedComparisonCounter = 0; //counter for number of comparisons
       int bubbleOptimizedSwapCounter = 0; //counter for number of swaps
       // Loop to perform n-2 scans
@@ -68,10 +69,12 @@ public class SortSearchAnalysis
             }
          }
          // If no swap was made, early return (list sorted).
+         if (!swapMade) {break;}
       }
+      return new int[] {bubbleOptimizedComparisonCounter, bubbleOptimizedSwapCounter};
    }
    
-   public static void InsertionSort (int [] A ) {
+   public static int[] InsertionSort (int [] A ) {
       int val = 0; // Init temp variale
       int insertionComparisonCounter = 0;
       int insertionSwapCounter = 0; //counter for number of swaps
@@ -89,141 +92,228 @@ public class SortSearchAnalysis
          A[j+1] = val; //Store current items at proper cell after right shift
          insertionSwapCounter++;
       }
+      return new int[] {insertionComparisonCounter, insertionSwapCounter};
    }
    
-   public static void MergeSortedArrays(int[]B, int[]C, int[]A) {
-      int i = 0; int j = 0; int k = 0; // Init temp variables
-      int MergeSortedArraysComparisonCounter = 0;
-      int MergeSortedArraysCopyCounter = 0;
-      // Scanning sorted arrays B and C, while inserting in A
-      while( (i < B.length) && (j < C.length) ) {
-         MergeSortedArraysComparisonCounter++;
-         if( B[i] <= C[j] ) {A[k] = B[i]; i++; MergeSortedArraysCopyCounter++;}
-         else { A[k] = C[j]; j++; MergeSortedArraysCopyCounter++; }
-         k++;
-      }
-      // One scan has terminted, transfer remaining sorted data in A
-      if( i == B.length) {System.arraycopy(C, j, A, k, C.length - j); MergeSortedArraysCopyCounter += (C.length - j);}
-      else {System.arraycopy(B, i, A, k, B.length - i); MergeSortedArraysCopyCounter += (B.length - i);} 
+   public static int[] MergeSortedArrays(int[] B, int[] C, int[] A) {
+       int i = 0, j = 0, k = 0;
+       int comparisons = 0;
+       int copies = 0;
+   
+       while (i < B.length && j < C.length) {
+           comparisons++;
+   
+           if (B[i] <= C[j]) {
+               A[k++] = B[i++];
+           } else {
+               A[k++] = C[j++];
+           }
+           copies++;
+       }
+   
+       // copy leftover elements
+       if (i == B.length) {
+           System.arraycopy(C, j, A, k, C.length - j);
+           copies += (C.length - j);
+       } else {
+           System.arraycopy(B, i, A, k, B.length - i);
+           copies += (B.length - i);
+       }
+   
+       return new int[]{comparisons, copies};
    }
+
    
    
-   public static void MergeSort(int [] A) {
-      if(A.length > 1) { //Check if sorting is really necessary
-         int h = (int) Math.floor(A.length/2); //Determine halves size.
-         // Init half 1 and 2
-         int B[] = new int[h]; System.arraycopy(A,0,B,0,h);
-         int C[] = new int[A.length-h]; System.arraycopy(A,h,C,0,A.length-h);
-         // Sort (recursively) halves 1 and 2.
-         MergeSort(B); MergeSort(C);
-         //Merge sorted halves (arrays B and C) into final sorted arrays
-         MergeSortedArrays(B,C,A); 
-      }
+   public static int[] MergeSort(int[] A) {
+       if (A.length <= 1) {
+           return new int[]{0, 0}; // no work needed
+       }
+   
+       // split the array
+       int h = A.length / 2;
+       int[] B = new int[h];
+       int[] C = new int[A.length - h];
+       System.arraycopy(A, 0, B, 0, h);
+       System.arraycopy(A, h, C, 0, A.length - h);
+   
+       // recursive calls
+       int[] leftCounts = MergeSort(B);
+       int[] rightCounts = MergeSort(C);
+   
+       // merge step
+       int[] mergeCounts = MergeSortedArrays(B, C, A);
+   
+       // accumulate totals
+       return new int[] {
+           leftCounts[0] + rightCounts[0] + mergeCounts[0], // comparisons
+           leftCounts[1] + rightCounts[1] + mergeCounts[1]  // copies
+       };
    }
+
    
    
-   public static int LumotoPartition(int[] array, int low, int high) {
-     int pivot = array[high];   // choose last element as pivot
-     int i = low;               // place for next smaller element
-     int LumotoComparisonCounter = 0;
-     int LumotoSwapCounter = 0;
+   public static int[] LomutoPartition(int[] array, int low, int high) {
+       int pivot = array[high];
+       int i = low;
+       int comparisons = 0;
+       int swaps = 0;
+   
+       for (int j = low; j < high; j++) {
+           comparisons++;
+           if (array[j] < pivot) {
+               // swap A[i] and A[j]
+               int temp = array[i];
+               array[i] = array[j];
+               array[j] = temp;
+   
+               i++;
+               swaps++;
+           }
+       }
+   
+       // final pivot swap
+       int temp = array[i];
+       array[i] = array[high];
+       array[high] = temp;
+       swaps++;
+   
+       return new int[] { i, comparisons, swaps };
+   }
 
-     for (int j = low; j < high; j++) {
-         LumotoComparisonCounter++;
-         if (array[j] < pivot) {
-             // swap array[i] and array[j]
-             int temp = array[i];
-             array[i] = array[j];
-             array[j] = temp;
-             i++;
-             LumotoSwapCounter++;
-         }
-     }
-
-     // put pivot in its final place
-     int temp = array[i];
-     array[i] = array[high];
-     array[high] = temp;
-     LumotoSwapCounter++;
-
-     return i; // pivot index
-    }
     
-    public static int HoarePartition(int[] array, int low, int high) {
-     int pivot = array[low];  // Hoare usually uses the first element as pivot
-     int i = low - 1;
-     int j = high + 1;
-     int HoareComparisonCounter = 0;
-     int HoareSwapCounter = 0;
-     
-     while (true) {
-         // move i right until we find an element >= pivot
-         do {
-             i++;
-             HoareComparisonCounter++;
-         } while (array[i] < pivot);
+   public static int[] QuickSort(int[] A, int left, int right) {
+   
+       // Base case: no work
+       if (left >= right) {
+           return new int[] { -1, 0, 0 };
+       }
+   
+       // Partition step (returns pivot + counters)
+       int[] part = LomutoPartition(A, left, right);
+       int pivot = part[0];
+       int comp = part[1];
+       int swap = part[2];
+   
+       // Recurse left
+       int[] leftResult = QuickSort(A, left, pivot - 1);
+   
+       // Recurse right
+       int[] rightResult = QuickSort(A, pivot + 1, right);
+   
+       // Total the comparisons + swaps
+       int totalComparisons = comp + leftResult[1] + rightResult[1];
+       int totalSwaps = swap + leftResult[2] + rightResult[2];
+   
+       return new int[] { pivot, totalComparisons, totalSwaps };
+   }
 
-         // move j left until we find an element <= pivot
-         do {
-             j--;
-             HoareComparisonCounter++;
-         } while (array[j] > pivot);
+   
+   
+   
+   public static int[] HeapSort(int[] A) {
+    int comparisonCount = 0; 
+    int swapCount = 0;         
 
-         // if pointers cross, return j as the partition index
-         if (i >= j) {
-             return j;
-         }
+    int n = A.length;
 
-         // otherwise, swap elements at i and j
-         int temp = array[i];
-         array[i] = array[j];
-         array[j] = temp;
-         HoareSwapCounter++;
-     }
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        comparisonCount += heapify(A, n, i);
     }
 
+    for (int i = n - 1; i > 0; i--) {
+        int temp = A[0];
+        A[0] = A[i];
+        A[i] = temp;
+        swapCount++;
 
-   public static void QuickSortLumoto(int[]A, int left, int right) {
-      //Check if any sorting is really necessary.
-      if(left < right) {
-         //Array partitioning (any partitioning algorithm can be used here).
-         int pivot = LumotoPartition(A,left,right);
-         //Recursive application of quicksort to left-part and right-part
-         QuickSortLumoto(A,left,pivot-1);
-         QuickSortLumoto(A,pivot+1, right);
-      }
+        comparisonCount += heapify(A, i, 0);
+    }
+    return new int[] {comparisonCount, swapCount};
    }
    
    
-   public static void QuickSortHoare(int[]A, int left, int right) {
-      //Check if any sorting is really necessary.
-      if(left < right) {
-         //Array partitioning (any partitioning algorithm can be used here).
-         int pivot = HoarePartition(A,left,right);
-         //Recursive application of quicksort to left-part and right-part
-         QuickSortHoare(A,left,pivot-1);
-         QuickSortHoare(A,pivot+1, right);
-      }
+   private static int heapify(int[] A, int heapSize, int i) {
+    int comparisons = 0;
+
+    int largest = i;
+    int left = 2*i + 1;
+    int right = 2*i + 2;
+
+    if (left < heapSize) {
+        comparisons++;
+        if (A[left] > A[largest]) {
+            largest = left;
+        }
+    }
+
+    if (right < heapSize) {
+        comparisons++;
+        if (A[right] > A[largest]) {
+            largest = right;
+        }
+    }
+
+    if (largest != i) {
+        int temp = A[i];
+        A[i] = A[largest];
+        A[largest] = temp;
+        return comparisons + heapify(A, heapSize, largest);
+    }
+
+    return comparisons;
    }
+
    
-   public static int SequentialSearch1(int[] A, int k) {
+   public static int[]  SequentialSearch(int[] A, int k) {
       int i = 0; //Scan index.
       int sequentialSearchCounter = 0;
       // Sequential lst scan: stop at list end or when key is found.
       while( (i < A.length ) && (A[i] != k ) ) {i++; sequentialSearchCounter++;}
       // Check if search is successful.
-      if (i < A.length) {return i;}
-      else {return -1;}
+      if (i < A.length) {return new int[] {sequentialSearchCounter, i};}
+      else {return new int[] {sequentialSearchCounter, -1};}
    }
    
-   public static int BinarySearchIterative(int[] A, int k) {
+   public static int[] BinarySearchIterative(int[] A, int k) {
       // Init temp variables (search partition).
+      int binaryIterativeCounter = 0;
       int left = 0;
       int middle = 0;
       int right = A.length - 1;
       // Search until range (search partition) is invalid.
       while( left <= right) {
-         middle = (int)Math.floor( (left + right)
+         binaryIterativeCounter++;
+         middle = (int)Math.floor( (left + right) /2); // Update Pivot (middle)
+         if( k == A[middle] ) {return new int[] {binaryIterativeCounter, middle}; } //Key found at pivot (middle).
+         else if( k < A[middle] ) {right = middle - 1; } //Update range (left half).
+         else { left = middle + 1;} //Update range (right half).
+         
       }
+      return new int[] {binaryIterativeCounter, -1}; // Loop ended without finding input key: search failed, return -1.
    }
+   
+//static int binaryRecursiveCounter = 0;
+
+   public static int[] BinarySearchRecursive(int[] A, int k, int left, int right) {
+   int binaryRecursiveCounter = 0;
+       if (left > right) { return new int[] {binaryRecursiveCounter, -1}; }
+   
+       binaryRecursiveCounter++; // count this call
+   
+       int middle = (left + right) / 2;
+   
+       if (k == A[middle]) {
+           return new int[] {binaryRecursiveCounter, middle};
+       }
+   
+       if (k < A[middle]) {
+           return BinarySearchRecursive(A, k, left, middle - 1);
+       } else {
+           return BinarySearchRecursive(A, k, middle + 1, right);
+       }
+   }
+
+        
 }
+   
