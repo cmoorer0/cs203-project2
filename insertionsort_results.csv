@@ -1,0 +1,2 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Insertion Sort,100000,3,sort,,,true,3676,2492041246,99999,0

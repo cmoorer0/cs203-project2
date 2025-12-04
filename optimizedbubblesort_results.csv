@@ -1,0 +1,2 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Optimized Bubble Sort,100000,3,sort,,,true,15386,4999878747,2491941247,0

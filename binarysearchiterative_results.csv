@@ -1,0 +1,2 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Binary Search (Iterative),100000,3,search,203,true,true,32,6,0,0

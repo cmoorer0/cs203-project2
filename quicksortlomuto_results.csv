@@ -1,0 +1,4 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Quick Sort (Lomuto),100000,3,sort,,,true,47,6235801,747604,0
+Quick Sort (Lomuto),100000,1,sort,,,true,45,6235801,747604,0
+Quick Sort (Lomuto),100000,5,sort,,,true,20,6235801,747604,0

@@ -1,0 +1,2 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Merge Sort,100000,3,sort,,,true,16,1536059,0,1668928

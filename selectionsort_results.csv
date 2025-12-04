@@ -1,0 +1,4 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
+Selection Sort,100000,3,sort,,,TRUE,4106,4999950000,100000,0
+Selection Sort,250000,3,sort,,,true,27913,31249875000,250000,0
+Selection Sort,500000,3,sort,,,true,140244,124999750000,500000,0
