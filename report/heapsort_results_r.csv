@@ -1,0 +1,8 @@
+algorithm,inputSize,balance,mode,duplicates, timeMs,comparisons,swaps
+Heap Sort,100000,3,sort,TRUE,18,3018617,99999
+Heap Sort,250000,3,sort,TRUE,63,8195123,249999
+Heap Sort,500000,3,sort,TRUE,86,17389594,499999
+Heap Sort,750000,3,sort,TRUE,131,26994580,749999
+Heap Sort,1000000,3,sort,TRUE,143,36776195,999999
+Heap Sort,1500000,3,sort,TRUE,252,56990348,1499999
+Heap Sort,2000000,3,sort,TRUE,316,77544953,1999999

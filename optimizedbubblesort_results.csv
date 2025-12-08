@@ -1,2 +1,8 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
 Optimized Bubble Sort,100000,3,sort,,,true,15386,4999878747,2491941247,0
+Optimized Bubble Sort,250000,3,sort,,,true,108467,31249525970,15609777788,0
+Optimized Bubble Sort,500000,3,sort,,,true,480133,124999034194,62431679177,0
+Optimized Bubble Sort,750000,3,sort,,,true,1263351,281248085865,140340476305,0
+Optimized Bubble Sort,1000000,3,sort,,,true,2312102,499998365229,249590176003,0
+Optimized Bubble Sort,1500000,3,sort,,,true,4415764,1124995104240,561383710168,0
+Optimized Bubble Sort,2000000,3,sort,,,true,7487809,1999996572294,998442304138,0

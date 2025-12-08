@@ -1,152 +1,73 @@
-# CS203 - Group Activity #2: Sorting and Searching Algorithms
+# Sort Search GUI
 
-**Course:** Computing and Algorithms III (CS203)  
-**Instructor:** Dr. Jamal Alhiyafi  
-**Term:** Fall 2025  
-**Due Date:** Monday, December 8, 2025 @ 10:20 AM  
-**Weight:** 15% of Final Grade  
-**Group Size:** 1–2 Students  
+## Purpose
 
----
+This Program is a Java GUI that allows the user to:
+- Generate integer arrays of specified lengths and distributions
+- Run sorting and search algorithms on the arrays
+- Measure and save analytcal data
 
-## 📘 Overview
+Algorithms Included:
+- Sorting: Selection, Bubble (+Optimized), Insertion, Merge, Quick, Heap
+- Search: Sequential, Binary
 
-This project involves implementing, analyzing, and comparing multiple **sorting and searching algorithms**.  
-Will gather all relevant algorithms into a single program with a **menu-driven interface**, allowing users to select algorithms, generate random input, and analyze performance under different conditions.
+## How to Compile and Run (via jGrasp)
 
-In addition to functional correctness, the project emphasizes **code readability**, **analysis**, and **documentation**.
+Requirements:
+- File 1: SortSearchGUI.java
+- File 2: SortSearchAnalysis.java
+- JGrasp
+- Files 1 and 2 located within the same folder.
 
----
+**Compiling Steps:**
+1. Open jGrasp
+2. Select File --> Open SortSearchGUI.java and SortSearchAnalysis.java
+3. With SortSearchGUI.java active, click 'Run'
+4. The *Sort/Search Analysis* window will appear
 
-## 🧩 Algorithms Covered
+## How to Use the Program
 
-### Sorting Algorithms
-- Selection Sort  
-- Bubble Sort  
-- Insertion Sort  
-- Merge Sort  
-- Quick Sort  
-- Heap Sort (to be covered soon)
+### 1. Main Menu
 
-### Searching Algorithms
-- Sequential (Linear) Search  
-- Binary Search  
+**Top Row - Input Setings**
+- Input Size: enter desired length of the array
+- Generate: creates a new array using the settings below
+- Load Input File: Load a previously saved array from a text file
+- Save Input File: Save the current array to a text file (will be formatted as space-separated integers)
+- Allow Duplicates: (Checked = Values May Repeat)
+- Balance (1-5): Controls skew of random values
+  - 1 = skewed heavily left
+  - 3 = balanced
+  - 5 = skewed heavily right
+- Initial Order:
+  - Random
+  - Ascending
+  - Descending
 
----
+**Second Row - Algorithm and Mode**
+- Algorithm: pick one of the soring or searching algorithms
+- Search Value: integer to look for (only for search algorithms)
 
-## 🧭 Program Requirements
+**Third Row - Run and Results**
+- Run
+  - Clones the current array
+  - Runs the selected algorithm in the selected mode
+  - Measures time, comparions, swaps/copies
+  - Shows the resulting array in the text area
+  - Saves output array to a file in working directory
+  - Appends results to '[algorithm]_results.csv' for that algorithm
 
-The program should:
+## Report Tabs
 
-1. Display a **menu** for selecting between sorting and searching operations.  
-2. Allow the **user to specify input size** and generate random arrays accordingly.  
-3. Save the input array to a file (so it can be reused in multiple tests).  
-4. Let users choose:
-   - Which **algorithm** to run  
-   - Whether to **sort** or **search**  
-   - The **value** to search for (if applicable)  
-5. Run the selected algorithm, displaying and storing the output results.
-6. Measure and compare algorithm **performance** (best, average, and worst cases).
-7. Record:
-   - Number of basic operations  
-   - Time elapsed for each algorithm  
-   - Case type (random, ascending, descending)  
-8. Save both **input and output values** to files.  
-9. Generate **tables and graphs** showing algorithm comparisons.
+Each algroithm has a Report tab.
 
----
-
-## 📊 Required Report
-
-Create a detailed report titled: YourLastNames-CS203-F25-ProjectReport.docx
-
-The report must include:
-
-- Tables showing results for different input sizes (`n`)
-- Data for best, average, and worst cases  
-- Graphs comparing performance  
-- Analysis of:
-  - Theoretical vs. experimental results  
-  - Differences between algorithms  
-  - Observed trends and efficiency  
-- Screenshots or excerpts of program outputs  
-- Discussion of findings  
-
----
-
-## 💾 File & Folder Structure
-
-The final submission should include:
-YourLastNames-CS203-F25-Project/
-│
-├── README.txt # How to compile and run the code
-├── YourLastNames-CS203-F25-ProjectReport.docx
-├── *.java / *.py / *.cpp # Source code files
-├── input/ # Input data files (for tests)
-├── output/ # Output data files (results)
-└── graphs/ # Charts and visuals for the report
-
-Compress the folder into a `.zip` or `.rar` file:
-
-Submit the archive via **Blackboard**.
-
----
-
-## 🧠 Extra Credit Opportunities
-
-For Extra Credit, I will Include:
-
-- Input Customization:
-    - Array Balance Scale
-    - For Search: Sorted or Unsorted
-    - Allow Duplicates?
-- Algorithm Customization:
-    - For QuickSort: Choose Partitioning
-    - Optimize Bubblesort Option
-- Interface
-    - GUI.exe/Webpage
-    - Add Report w/ Graphs to GUI
-- Data Handling
-    - Store metrics in an excel sheet that continues to be updated ( Generating and saving performance graphs dynamically  )
-- Adaptive Sort Option: detect if data is nearly sorted and automatically pick the best sort method based on user question (do you care about space or time?). 
+Each report tab shows
+- A table loaded from the corresponding CSV file
+- A graph of input size v. number of comparisons
+- Buttons
+  - Reload (must be pressed after each run of selected algorithm)
+  - Algorithm Info - a brief description of how the algorithm works
+  - View Analysis - a high level explanation of what the graph should look like
 
 
-
-Contact **Dr. Alhiyafi** for approval and details before proceeding with extra-credit features.
-
----
-
-## 🧩 Grading Criteria
-
-| Category | Description |
-|-----------|-------------|
-| **Correctness** | Code compiles and runs without errors |
-| **Readability** | Proper indentation, naming, spacing, and comments |
-| **Documentation** | Includes detailed README and report |
-| **Performance Analysis** | Contains tables, graphs, and analysis |
-| **Presentation/Demo** | Short demo of the running project |
-| **Extra Credit (Optional)** | Approved enhancements and analysis |
-
----
-
-## 🧰 Additional Notes
-
-- All code must include:
-  - Your **name**, **course**, **term**, and **project title** at the top of each file.  
-- The `README.txt` file must clearly explain:
-  - How to compile and execute the program  
-  - Any file dependencies or setup instructions  
-- The project will be worked on across **four lab sessions**, with ongoing clarifications provided.
-
----
-
-## ✍️ Example Header for Source Files
-
-```java
-/*
- * Author: John Doe
- * Course: CS203 - Computing and Algorithms III
- * Term: Fall 2025
- * Project: Group Activity #2
- */
 

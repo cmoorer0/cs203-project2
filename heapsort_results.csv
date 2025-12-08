@@ -1,2 +1,8 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
-Heap Sort,100000,3,sort,,,true,18,3018617,99999,0
+Heap Sort,100000,3,sort,,,TRUE,18,3018617,99999,0
+Heap Sort,250000,3,sort,,,TRUE,63,8195123,249999,0
+Heap Sort,500000,3,sort,,,TRUE,86,17389594,499999,0
+Heap Sort,750000,3,sort,,,TRUE,131,26994580,749999,0
+Heap Sort,1000000,3,sort,,,TRUE,143,36776195,999999,0
+Heap Sort,1500000,3,sort,,,TRUE,252,56990348,1499999,0
+Heap Sort,2000000,3,sort,,,TRUE,316,77544953,1999999,0

@@ -1,2 +1,10 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
 Insertion Sort,100000,3,sort,,,true,3676,2492041246,99999,0
+Insertion Sort,250000,3,sort,,,true,21095,15610027787,249999,0
+Insertion Sort,500000,3,sort,,,true,83506,62432179176,499999,0
+Insertion Sort,750000,3,sort,,,true,178581,140341226304,749999,0
+Insertion Sort,1000000,3,sort,,,true,105623,249591176002,999999,0
+Insertion Sort,1500000,3,sort,,,true,251505,561385210167,1499999,0
+Insertion Sort,2000000,3,sort,,,true,492744,998444304137,1999999,0
+Insertion Sort,1000000,3,sort,,,true,4,999999,999999,0
+Insertion Sort,1000000,3,sort,,,true,230676,499500965362,999999,0
