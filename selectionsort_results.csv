@@ -1,8 +1,8 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
 Selection Sort,100000,3,sort,,,TRUE,4106,4999950000,100000,0
-Selection Sort,250000,3,sort,,,true,27913,31249875000,250000,0
-Selection Sort,500000,3,sort,,,true,140244,124999750000,500000,0
-Selection Sort,750000,3,sort,,,true,251870,281249625000,750000,0
-Selection Sort,1000000,3,sort,,,true,632469,499999500000,1000000,0
-Selection Sort,1500000,3,sort,,,true,920829,1124999250000,1500000,0
-Selection Sort,2000000,3,sort,,,true,1658700,1999999000000,2000000,0
+Selection Sort,250000,3,sort,,,TRUE,27913,31249875000,250000,0
+Selection Sort,500000,3,sort,,,TRUE,140244,1.25E+11,500000,0
+Selection Sort,750000,3,sort,,,TRUE,251870,2.8125E+11,750000,0
+Selection Sort,1000000,3,sort,,,TRUE,632469,5E+11,1000000,0
+Selection Sort,1500000,3,sort,,,TRUE,920829,1.125E+12,1500000,0
+Selection Sort,2000000,3,sort,,,TRUE,1658700,2E+12,2000000,0

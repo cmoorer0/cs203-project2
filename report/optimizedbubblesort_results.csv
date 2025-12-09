@@ -1,0 +1,10 @@
+algorithm,inputSize,balance,mode,duplicates, timeMs,comparisons,swaps,n^2
+Optimized Bubble Sort,100000,3,sort,TRUE,15386,4999878747,2491941247,10000000000
+Optimized Bubble Sort,250000,3,sort,TRUE,108467,31249525970,15609777788,62500000000
+Optimized Bubble Sort,500000,3,sort,TRUE,480133,1.24999E+11,62431679177,2.5E+11
+Optimized Bubble Sort,750000,3,sort,TRUE,1263351,2.81248E+11,1.4034E+11,5.625E+11
+Optimized Bubble Sort,1000000,3,sort,TRUE,2312102,4.99998E+11,2.4959E+11,1E+12
+Optimized Bubble Sort,1500000,3,sort,TRUE,4415764,1.125E+12,5.61384E+11,2.25E+12
+Optimized Bubble Sort,2000000,3,sort,TRUE,7487809,2E+12,9.98442E+11,4E+12
+Optimized Bubble Sort,1000000,3,sort,TRUE,16,999999,0,1E+12
+Optimized Bubble Sort,1000000,3,sort,FALSE,1267229,4.99999E+11,4.995E+11,1E+12

@@ -359,7 +359,7 @@ public class SortSearchGUI extends JFrame {
                 boolean allowDup = allowDuplicatesCheck.isSelected();
                 int balance = balanceSlider.getValue(); // 1–5
    
-                currentArray = generateCustomArray(n, 0, 1000, allowDup, balance);
+                currentArray = generateCustomArray(n, 0, n, allowDup, balance);
                 
                 // Apply initial order for best/avg/worst cases
                 String order = (String) dataOrderBox.getSelectedItem();

@@ -1,3 +1,15 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
-Sequential Search,100000,3,search,203,TRUE,TRUE,2,511,0,0
-Sequential Search,100000,3,search,200000,FALSE,TRUE,16,100000,0,0
+Sequential Search,100000,3,search,911,TRUE,TRUE,0,883,0,0
+Sequential Search,100000,3,search,49733,FALSE,TRUE,0,100000,0,0
+Sequential Search,250000,3,search,404,TRUE,TRUE,0,1818,0,0
+Sequential Search,250000,3,search,239333,FALSE,TRUE,0,250000,0,0
+Sequential Search,500000,3,search,670,TRUE,TRUE,0,334556,0,0
+Sequential Search,500000,3,search,115000,FALSE,TRUE,0,500000,0,0
+Sequential Search,750000,3,search,790,TRUE,TRUE,0,591771,0,0
+Sequential Search,750000,3,search,170000,FALSE,TRUE,0,750000,0,0
+Sequential Search,1000000,3,search,347,TRUE,TRUE,0,346079,0,0
+Sequential Search,1000000,3,search,107000,FALSE,TRUE,0,1000000,0,0
+Sequential Search,1500000,3,search,432,TRUE,TRUE,0,646494,0,0
+Sequential Search,1500000,3,search,600000,FALSE,TRUE,0,1500000,0,0
+Sequential Search,2000000,3,search,227,TRUE,TRUE,0,453006,0,0
+Sequential Search,2000000,3,search,600000,FALSE,TRUE,0,2000000,0,0

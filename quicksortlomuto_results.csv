@@ -1,4 +1,9 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
-Quick Sort (Lomuto),100000,3,sort,,,true,47,6235801,747604,0
-Quick Sort (Lomuto),100000,1,sort,,,true,45,6235801,747604,0
-Quick Sort (Lomuto),100000,5,sort,,,true,20,6235801,747604,0
+Quick Sort (Lomuto),100000,3,sort,,,TRUE,47,6235801,747604,0
+Quick Sort (Lomuto),250000,3,sort,,,true,94,34534084,1880024,0
+Quick Sort (Lomuto),500000,3,sort,,,true,173,130923752,3480319,0
+Quick Sort (Lomuto),750000,3,sort,,,true,235,290997585,6193842,0
+Quick Sort (Lomuto),1000000,3,sort,,,true,408,511733537,7653996,0
+Quick Sort (Lomuto),1500000,3,sort,,,true,863,1142346442,11373107,0
+Quick Sort (Lomuto),2000000,3,sort,,,true,1380,2024011362,14842815,0
+Quick Sort (Lomuto),1000000,3,sort,,,true,1916,999223556,500689047,0

@@ -1,2 +1,13 @@
 algorithm,inputSize,balance,mode,searchValue,found,duplicates, timeMs,comparisons,swaps,copies
-Binary Search (Iterative),100000,3,search,203,true,true,32,6,0,0
+Binary Search (Iterative),100000,3,search,203,TRUE,TRUE,32,6,0,0
+Binary Search (Iterative),250000,3,search,196754,FALSE,TRUE,53,18,0,0
+Binary Search (Iterative),500000,3,search,840278,false,true,94,19,0,0
+Binary Search (Iterative),750000,3,search,248820,true,true,158,15,0,0
+Binary Search (Iterative),1000000,3,search,810884,false,true,118,20,0,0
+Binary Search (Iterative),1000000,3,search,500000,false,true,81,20,0,0
+Binary Search (Iterative),1000000,3,search,500000,true,false,184,19,0,0
+Binary Search (Iterative),1000000,3,search,499999,true,false,193,1,0,0
+Binary Search (Iterative),1500000,3,search,810835,true,false,352,20,0,0
+Binary Search (Iterative),1500000,3,search,217844,true,false,278,19,0,0
+Binary Search (Iterative),2000000,3,search,1723765,true,false,398,19,0,0
+Binary Search (Iterative),1000000,3,search,1723765,false,false,204,20,0,0
