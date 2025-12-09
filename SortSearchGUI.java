@@ -264,6 +264,7 @@ public class SortSearchGUI extends JFrame {
          // row2
          JPanel row2 = new JPanel();
          algorithmBox = new JComboBox<String>(new String[] {
+                 "Adaptive Sort (Auto)",
                  "Selection Sort",
                  "Bubble Sort",
                  "Optimized Bubble Sort",
@@ -347,7 +348,49 @@ public class SortSearchGUI extends JFrame {
       private void showError(String msg) {
          JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
       }
+         
+        // Heuristic: array is "nearly sorted" if only a small fraction of
+      // adjacent pairs are out of order.
+      private boolean isNearlySorted(int[] A) {
+          if (A == null || A.length < 2) return true;
       
+          int n = A.length;
+          int breaks = 0;
+      
+          for (int i = 0; i < n - 1; i++) {
+              if (A[i] > A[i + 1]) {
+                  breaks++;
+              }
+          }
+      
+          double ratio = breaks / (double) (n - 1);
+          // e.g., <= 5% of positions out of order counts as "nearly sorted"
+          return ratio <= 0.05;
+      }
+      
+      // Ask the user whether they care more about time or space.
+      // Returns true if user prefers time, false if space.
+      private boolean askTimePriority() {
+          Object[] options = {
+              "Time (run as fast as possible)",
+              "Space (use minimal extra memory)"
+          };
+      
+          int choice = JOptionPane.showOptionDialog(
+                  this,
+                  "For this run, what do you care about more?",
+                  "Adaptive Sort Preference",
+                  JOptionPane.DEFAULT_OPTION,
+                  JOptionPane.QUESTION_MESSAGE,
+                  null,
+                  options,
+                  options[0]
+          );
+      
+          // Default to time if they close the dialog
+          return (choice == 0 || choice == JOptionPane.CLOSED_OPTION);
+      }
+
 
         private void onGenerate() {
             try {
@@ -536,63 +579,100 @@ public class SortSearchGUI extends JFrame {
         }
          
         private void onRun() {
-            if (currentArray == null) {
-                showError("Generate or load an array first.");
-                return;
-            }
-
-            String algo = (String) algorithmBox.getSelectedItem();
-            boolean isSortMode = sortRadio.isSelected();
-
-            // Work on a copy so original can be reused
-            int[] working = currentArray.clone();
-
-            ExperimentResult result = new ExperimentResult();
-            result.algorithm = algo;
-            result.mode = isSortMode ? "sort" : "search";
-            result.inputSize = working.length;
-            result.balance = balanceSlider.getValue();
-            result.duplicates = allowDuplicatesCheck.isSelected();
-
-
-            Integer key = null;
-            if (!isSortMode) {
-                try {
-                    key = Integer.parseInt(searchValueField.getText().trim());
-                } catch (Exception ex) {
-                    showError("Enter a valid search value.");
-                    return;
-                }
-            }
-            result.searchValue = key;
-
-            long start = System.currentTimeMillis();
-
-            if (isSortMode) {
-                runSortAlgorithm(algo, working, result);
-            } else {
-                runSearchAlgorithm(algo, working, key.intValue(), result);
-            }
-
-            long end = System.currentTimeMillis();
-            result.timeMs = end - start;
-
-            // Update labels
-            comparisonsLabel.setText("Comparisons: " + result.comparisons);
-            swapsLabel.setText("Swaps: " + result.swaps);
-            copiesLabel.setText("Copies: " + result.copies);
-            timeLabel.setText("Time (ms): " + result.timeMs);
-
-            // Save output array
-            saveOutputArray(algo, isSortMode, working);
-
-            // Append CSV
-            appendResultToCsv(result, algo);
-
-            // Show resulting array
-            showArray(working);
-        }
-
+             if (currentArray == null) {
+                 showError("Generate or load an array first.");
+                 return;
+             }
+         
+             String selectedAlgo = (String) algorithmBox.getSelectedItem();
+             boolean isSortMode = sortRadio.isSelected();
+         
+             // Work on a copy so original can be reused
+             int[] working = currentArray.clone();
+         
+             ExperimentResult result = new ExperimentResult();
+             result.mode = isSortMode ? "sort" : "search";
+             result.inputSize = working.length;
+             result.balance = balanceSlider.getValue();
+             result.duplicates = allowDuplicatesCheck.isSelected();
+         
+             // ---- ADAPTIVE SORT HANDLING (SORT MODE ONLY) ----
+             String algo = selectedAlgo;  // this will be the *actual* algorithm used
+         
+             if ("Adaptive Sort (Auto)".equals(selectedAlgo)) {
+                 if (!isSortMode) {
+                     showError("Adaptive Sort only works in Sort mode.");
+                     return;
+                 }
+         
+                 boolean preferTime = askTimePriority();
+                 boolean nearly = isNearlySorted(working);
+                 String chosenAlgo;
+         
+                 if (nearly) {
+                     // Nearly sorted: insertion sort is great (fast & in-place)
+                     chosenAlgo = "Insertion Sort";
+                 } else {
+                     if (preferTime) {
+                         // Not nearly sorted, user cares about time: use Merge Sort
+                         chosenAlgo = "Merge Sort";
+                     } else {
+                         // Not nearly sorted, user cares about space: use Heap Sort
+                         chosenAlgo = "Heap Sort";
+                     }
+                 }
+         
+                 // Inform the user which algorithm is actually being used
+                 JOptionPane.showMessageDialog(
+                         this,
+                         "Adaptive Sort chose: " + chosenAlgo
+                                 + "\nNearly sorted: " + nearly
+                                 + "\nPriority: " + (preferTime ? "Time" : "Space"),
+                         "Adaptive Sort Decision",
+                         JOptionPane.INFORMATION_MESSAGE
+                 );
+         
+                 algo = chosenAlgo;
+             }
+         
+             Integer key = null;
+             if (!isSortMode) {
+                 try {
+                     key = Integer.parseInt(searchValueField.getText().trim());
+                 } catch (Exception ex) {
+                     showError("Enter a valid search value.");
+                     return;
+                 }
+             }
+             result.searchValue = key;
+         
+             long start = System.currentTimeMillis();
+         
+             if (isSortMode) {
+                 result.algorithm = algo; // record the concrete algorithm used
+                 runSortAlgorithm(algo, working, result);
+             } else {
+                 result.algorithm = selectedAlgo; // for searches, use the selected name
+                 runSearchAlgorithm(selectedAlgo, working, key.intValue(), result);
+             }
+         
+             long end = System.currentTimeMillis();
+             result.timeMs = end - start;
+         
+             // Update labels
+             comparisonsLabel.setText("Comparisons: " + result.comparisons);
+             swapsLabel.setText("Swaps: " + result.swaps);
+             copiesLabel.setText("Copies: " + result.copies);
+             timeLabel.setText("Time (ms): " + result.timeMs);
+         
+             // Save output array and CSV using the *actual* algorithm for sorts
+             String csvAlgoName = isSortMode ? algo : selectedAlgo;
+             saveOutputArray(csvAlgoName, isSortMode, working);
+             appendResultToCsv(result, csvAlgoName);
+         
+             // Show resulting array
+             showArray(working);
+         }
         private void runSortAlgorithm(String algo, int[] A, ExperimentResult result) {
             long[] stats;
             if ("Selection Sort".equals(algo)) {

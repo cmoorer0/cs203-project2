@@ -6,3 +6,4 @@ Merge Sort,750000,3,sort,,,true,508,13701964,0,14701424
 Merge Sort,1000000,3,sort,,,true,396,18670583,0,19951424
 Merge Sort,1500000,3,sort,,,true,812,28904897,0,30902848
 Merge Sort,2000000,3,sort,,,true,878,39340272,0,41902848
+Merge Sort,200,3,sort,,,true,4,1289,0,1544

@@ -1,0 +1,6 @@
+algorithm,inputSize,balance,mode,searchValue,found,duplicates,timeMs,comparisons,swaps,copies
+Adaptive Sort (Auto,200,3,sort,,,true,1330,0,0,0
+Adaptive Sort (Auto,200,3,sort,,,true,2951,0,0,0
+Adaptive Sort (Auto,200,3,search,120,false,true,2450,0,0,0
+Adaptive Sort (Auto,200,3,sort,,,true,1314,0,0,0
+Adaptive Sort (Auto,200,3,sort,,,true,1764,0,0,0
